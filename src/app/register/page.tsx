@@ -1,5 +1,5 @@
-// /app/register/page.tsx
-'use client';
+'use client';  
+
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -16,16 +16,16 @@ const Register: React.FC = () => {
       setError("Please fill in all fields");
       return;
     }
-
     try {
-      const response = await fetch('https://weblab.localapp.cc/user-profile/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("https://weblab.localapp.cc/user-profile/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userName, passWord }),
       });
       const data = await response.json();
       if (response.ok) {
-        router.push('/landing');  // เมื่อสมัครเสร็จจะไปหน้า Landing
+        console.log("Registration successful:", data);
+        router.push("/landing");  
       } else {
         setError(data.error || "Registration failed");
       }
